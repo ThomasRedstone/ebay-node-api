@@ -1,7 +1,7 @@
 "use strict";
 const expect = require("chai").expect;
 const should = require("chai").should();
-const { parseObj } = require("../src/common-utils");
+const { parseObj } = require("../src/helpers");
 
 describe("test common util methods", () => {
   it("test parse object to query params", () => {

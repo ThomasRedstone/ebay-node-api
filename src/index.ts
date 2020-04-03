@@ -19,7 +19,7 @@ const {
   getAccessToken,
   setHeaders,
   getHeaders
-} = require("./common-utils");
+} = require("./helpers");
 const { getSimilarItems, getMostWatchedItems } = require("./merchandising");
 const {
   PROD_BASE_URL,
@@ -47,7 +47,7 @@ function Ebay(options) {
     throw Error(
       "Client ID is Missing\ncheck documentation to get Client ID http://developer.ebay.com/DevZone/account/"
     );
-  if (!(this instanceof Ebay)) return new Ebay(options);
+  // if (!(this instanceof Ebay)) return new Ebay(options);
   if (!options.env) options.env = PROD_ENV;
   options.baseUrl = PROD_BASE_URL;
   options.baseSvcUrl = BASE_SVC_URL;

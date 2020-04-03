@@ -1,7 +1,7 @@
 "use strict";
 
 const urlObject = require("./buildURL");
-const { getRequest } = require("./request");
+import { getRequest } from "./request";
 const FIND_ITEMS_BY_KEYWORD = "findItemsByKeywords";
 const FIND_ITEMS_BY_CATEGORY = "findItemsByCategory";
 const FIND_COMPLETED_ITEMS = "findCompletedItems";
@@ -21,7 +21,7 @@ const findItemsByKeywords = function(options) {
   }
   this.options.additionalParam = constructAdditionalParams(options);
   const url = urlObject.buildSearchUrl(this.options);
-  return getRequest(url).then(data => {
+  return getRequest(url).then((data: any) => {
     return JSON.parse(data).findItemsByKeywordsResponse;
   }, console.error);
 };
@@ -33,7 +33,7 @@ const findItemsByCategory = function(categoryID) {
   this.options.operationName = FIND_ITEMS_BY_CATEGORY;
   this.options.param = "categoryId";
   const url = urlObject.buildSearchUrl(this.options);
-  return getRequest(url).then(data => {
+  return getRequest(url).then((data: any) => {
     return JSON.parse(data).findItemsByCategoryResponse;
   }, console.error);
 };
@@ -56,7 +56,7 @@ const findCompletedItems = function(options) {
   this.options.operationName = FIND_COMPLETED_ITEMS;
   this.options.additionalParam = constructAdditionalParams(options);
   const url = urlObject.buildSearchUrl(this.options);
-  return getRequest(url).then(data => {
+  return getRequest(url).then((data: any) => {
     return JSON.parse(data).findCompletedItemsResponse;
   }, console.error);
 };
@@ -77,7 +77,7 @@ const findItemsAdvanced = function(options) {
   this.options.operationName = FIND_ITEMS_ADV;
   this.options.additionalParam = constructAdditionalParams(options);
   const url = urlObject.buildSearchUrl(this.options);
-  return getRequest(url).then(data => {
+  return getRequest(url).then((data: any) => {
     return JSON.parse(data).findItemsAdvancedResponse;
   }, console.error);
 };
@@ -85,7 +85,7 @@ const findItemsAdvanced = function(options) {
 const getVersion = function() {
   this.options.operationName = "getVersion";
   const url = urlObject.buildSearchUrl(this.options);
-  return getRequest(url).then(data => {
+  return getRequest(url).then((data: any) => {
     return JSON.parse(data).getVersionResponse[0];
   }, console.error);
 };
@@ -104,7 +104,7 @@ const findItemsByProduct = function(options) {
   this.options.additionalParam = constructAdditionalParams(options);
   let url = urlObject.buildSearchUrl(this.options);
   url = `${url}&productId.@type=${type}`;
-  return getRequest(url).then(data => {
+  return getRequest(url).then((data: any) => {
     return JSON.parse(data).findItemsByProductResponse;
   }, console.error);
 };

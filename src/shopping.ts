@@ -1,17 +1,16 @@
 "use strict";
 
-const { getRequest } = require("./request");
-const urlObject = require("./buildURL");
-const makeString = require("make-string");
+import { getRequest } from "./request";
+import { parseJson } from "./helpers";
+import urlObject from "./buildURL";
+import makeString from "make-string";
 
 const getAllCategories = function(categoryID) {
   this.options.name = categoryID ? categoryID : -1;
   this.options.operationName = "GetCategoryInfo";
   this.options.param = "CategoryID";
   const url = urlObject.buildShoppingUrl(this.options);
-  return getRequest(url).then(data => {
-    return JSON.parse(data);
-  }, console.error);
+  return getRequest(url).then(parseJson, console.error);
 };
 
 const getUserDetails = function(input) {
@@ -22,9 +21,7 @@ const getUserDetails = function(input) {
   this.options.name = input.userId;
   this.options.includeSelector = input.details ? "Details" : null;
   const url = urlObject.buildShoppingUrl(this.options);
-  return getRequest(url).then(data => {
-    return JSON.parse(data);
-  }, console.error);
+  return getRequest(url).then(parseJson, console.error);
 };
 
 const getItemStatus = function(itemIds) {
@@ -33,9 +30,7 @@ const getItemStatus = function(itemIds) {
   this.options.param = "ItemID";
   this.options.name = makeString(itemIds, { braces: "false", quotes: "no" });
   const url = urlObject.buildShoppingUrl(this.options);
-  return getRequest(url).then(data => {
-    return JSON.parse(data);
-  }, console.error);
+  return getRequest(url).then(parseJson, console.error);
 };
 
 const getShippingCosts = function(input) {
@@ -53,9 +48,7 @@ const getShippingCosts = function(input) {
   const params = countryCodeParam + postalCodeParam;
   let url = urlObject.buildShoppingUrl(this.options);
   url = url + params;
-  return getRequest(url).then(data => {
-    return JSON.parse(data);
-  }, console.error);
+  return getRequest(url).then(parseJson, console.error);
 };
 
 module.exports = {

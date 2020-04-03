@@ -1,7 +1,7 @@
 "use strict";
 
 const { getRequest } = require("./request");
-const { parseObj } = require("./common-utils");
+const { parseObj } = require("./helpers");
 const { MERCH_SRVC_NAME } = require("./constants");
 
 //https://developer.ebay.com/devzone/merchandising/docs/CallRef/getMostWatchedItems.html#Samples
@@ -11,7 +11,7 @@ const { MERCH_SRVC_NAME } = require("./constants");
  * Add interest and excitement for buyers by showing them what other people are watching.
  * @param {String} categoryId (optional)
  */
-const getMostWatchedItems = function(merchOptions) {
+export const getMostWatchedItems = function(merchOptions) {
   if (!this.options.clientID) throw new Error("Missing App id or client id");
   const url = parseObj(merchOptions);
   return getRequest(
@@ -30,7 +30,7 @@ const getMostWatchedItems = function(merchOptions) {
  * Gets similar Items based on the Item id provided.
  * @param {String} categoryId (optional)
  */
-const getSimilarItems = function(merchOptions) {
+export const getSimilarItems = function(merchOptions) {
   if (!this.options.clientID) throw new Error("Missing App id or client id");
   const url = parseObj(merchOptions);
   console.log(
@@ -45,9 +45,4 @@ const getSimilarItems = function(merchOptions) {
     .catch(error => {
       console.log(error);
     });
-};
-
-module.exports = {
-  getMostWatchedItems,
-  getSimilarItems
 };

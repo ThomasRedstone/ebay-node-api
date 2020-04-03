@@ -2,7 +2,7 @@
 let httpRequest = require("https");
 const qs = require("querystring");
 
-const getRequest = url => {
+export const getRequest = url => {
   if (url.includes("http://")) httpRequest = require("http");
   return new Promise(function(resolve, reject) {
     httpRequest.get(url, res => {
@@ -24,7 +24,7 @@ const getRequest = url => {
   });
 };
 
-const makeRequest = function postRequest(self, endpoint, methodName, token) {
+export const makeRequest = function postRequest(self, endpoint, methodName, token) {
   let dataString = "";
   if (self.data) {
     dataString = self.data;
@@ -63,9 +63,7 @@ const makeRequest = function postRequest(self, endpoint, methodName, token) {
   });
 };
 
-const base64Encode = encodeData => {
+export const base64Encode = encodeData => {
   const buff = Buffer.from(encodeData);
   return buff.toString("base64");
 };
-
-module.exports = { getRequest, makeRequest, base64Encode };

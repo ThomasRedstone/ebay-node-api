@@ -2,7 +2,7 @@
   "name": "ebay-node-api",
   "version": "2.8.1",
   "description": "Ebay node api client",
-  "main": "src/index.ts",
+  "main": "dist/src/index.js",
   "homepage": "https://github.com/pajaydev/ebay-node-api",
   "scripts": {
     "lint": "eslint src/*.js",
@@ -11,7 +11,9 @@
     "docs": "docsify init ./docs",
     "serve-docs": "docsify serve docs",
     "publish": "gh-pages --dist docs --dotfiles --message 'chore: Publish docs'",
-    "prepublish": "npm run test"
+    "prepublish": "npm run test",
+    "build": "tsc --build",
+    "prepare": "yarn build"
   },
   "author": "Ajaykumar prathap",
   "keywords": [
@@ -33,9 +35,11 @@
     "extends": "ajay"
   },
   "dependencies": {
+    "@types/node": "^13.11.0",
     "eslint-config-ajay": "^1.0.2",
     "make-string": "^1.0.3",
-    "oauth-ebay": "^1.0.0"
+    "oauth-ebay": "^1.0.0",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "chai": "^4.1.2",

@@ -2,7 +2,7 @@
 const fs = require("fs");
 const makeString = require("make-string");
 const { makeRequest } = require("./request");
-const { encodeURLQuery, base64Encode } = require("./common-utils");
+const { encodeURLQuery, base64Encode } = require("./helpers");
 
 const getItem = function(itemId) {
   if (!itemId) throw new Error("Item Id is required");

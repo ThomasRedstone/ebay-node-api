@@ -4,7 +4,7 @@
  * the type of request.
  */
 
-const buildURL = {
+export default {
   /**
    * Builds the findings(search)  URL.
    *
@@ -52,5 +52,3 @@ const buildURL = {
     return baseUrl;
   }
 };
-
-module.exports = buildURL;

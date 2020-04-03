@@ -1,6 +1,6 @@
 "use strict";
-const { makeRequest } = require("./request");
-const { upperCase } = require("./common-utils");
+import { makeRequest } from "./request";
+import { upperCase, parseJson } from "./helpers";
 
 /**
  * @method getDefaultCategoryTreeId {Function}
@@ -8,6 +8,8 @@ const { upperCase } = require("./common-utils");
  */
 
 const DEFAULT_CATEGORY_TREE = "EBAY_US";
+
+
 const getDefaultCategoryTreeId = function(marketPlaceId) {
   if (!marketPlaceId) marketPlaceId = DEFAULT_CATEGORY_TREE;
   marketPlaceId = upperCase(marketPlaceId);
@@ -19,9 +21,7 @@ const getDefaultCategoryTreeId = function(marketPlaceId) {
     `/commerce/taxonomy/v1_beta/get_default_category_tree_id?marketplace_id=${marketPlaceId}`,
     "GET",
     auth
-  ).then(result => {
-    return JSON.parse(result);
-  });
+  ).then(parseJson);
 };
 
 /**
@@ -39,9 +39,7 @@ const getCategoryTree = function(categoryTreeId) {
     `/commerce/taxonomy/v1_beta/category_tree/${categoryTreeId}`,
     "GET",
     auth
-  ).then(result => {
-    return JSON.parse(result);
-  });
+  ).then(parseJson);
 };
 
 /**
@@ -64,9 +62,7 @@ const getCategorySubtree = function(categoryTreeId, categoryId) {
     `/commerce/taxonomy/v1_beta/category_tree/${categoryTreeId}/get_category_subtree?category_id=${categoryId}`,
     "GET",
     auth
-  ).then(result => {
-    return JSON.parse(result);
-  });
+  ).then(parseJson);
 };
 
 /**
@@ -89,9 +85,7 @@ const getCategorySuggestions = function(categoryTreeId, keyword) {
     `/commerce/taxonomy/v1_beta/category_tree/${categoryTreeId}/get_category_suggestions?q=${keyword}`,
     "GET",
     auth
-  ).then(result => {
-    return JSON.parse(result);
-  });
+  ).then(parseJson);
 };
 
 /**
@@ -113,9 +107,7 @@ const getItemAspectsForCategory = function(categoryTreeId, categoryId) {
     `/commerce/taxonomy/v1_beta/category_tree/${categoryTreeId}/get_item_aspects_for_category?category_id=${categoryId}`,
     "GET",
     auth
-  ).then(result => {
-    return JSON.parse(result);
-  });
+  ).then(parseJson);
 };
 
 module.exports = {

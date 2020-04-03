@@ -4,3 +4,4 @@ npm-debug.log
 .gitcredentials
 **/credentials/
 .DS_Store
+dist/
