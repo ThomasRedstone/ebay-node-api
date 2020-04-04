@@ -2,14 +2,14 @@
 
 import { getRequest } from "./request";
 import { parseJson } from "./helpers";
-import urlObject from "./buildURL";
+import { buildShoppingUrl } from "./buildURL";
 import makeString from "make-string";
 
 const getAllCategories = function(categoryID) {
   this.options.name = categoryID ? categoryID : -1;
   this.options.operationName = "GetCategoryInfo";
   this.options.param = "CategoryID";
-  const url = urlObject.buildShoppingUrl(this.options);
+  const url = buildShoppingUrl(this.options);
   return getRequest(url).then(parseJson, console.error);
 };
 
@@ -20,7 +20,7 @@ const getUserDetails = function(input) {
   this.options.param = "UserID";
   this.options.name = input.userId;
   this.options.includeSelector = input.details ? "Details" : null;
-  const url = urlObject.buildShoppingUrl(this.options);
+  const url = buildShoppingUrl(this.options);
   return getRequest(url).then(parseJson, console.error);
 };
 
@@ -29,7 +29,7 @@ const getItemStatus = function(itemIds) {
   this.options.operationName = "GetItemStatus";
   this.options.param = "ItemID";
   this.options.name = makeString(itemIds, { braces: "false", quotes: "no" });
-  const url = urlObject.buildShoppingUrl(this.options);
+  const url = buildShoppingUrl(this.options);
   return getRequest(url).then(parseJson, console.error);
 };
 
@@ -46,7 +46,7 @@ const getShippingCosts = function(input) {
     ? "&DestinationPostalCode=" + input.destPostalCode
     : "";
   const params = countryCodeParam + postalCodeParam;
-  let url = urlObject.buildShoppingUrl(this.options);
+  let url = buildShoppingUrl(this.options);
   url = url + params;
   return getRequest(url).then(parseJson, console.error);
 };
